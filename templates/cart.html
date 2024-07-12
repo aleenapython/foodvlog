@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+    <!-- Font awesome -->
+    <link href="{% static 'cr/css/font-awesome.css' %}" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="{% static 'cr/css/bootstrap.css' %}" rel="stylesheet">
+    <!-- SmartMenus jQuery Bootstrap Addon CSS -->
+    <link href="{% static 'cr/css/jquery.smartmenus.bootstrap.css' %}" rel="stylesheet">
+    <!-- Product view slider -->
+    <link rel="stylesheet" type="text/css" href="{% static 'cr/css/jquery.simpleLens.css' %}">
+    <!-- slick slider -->
+    <link rel="stylesheet" type="text/css" href="{% static 'cr/css/slick.css' %}">
+    <!-- price picker slider -->
+    <link rel="stylesheet" type="text/css" href="{% static 'cr/css/nouislider.css' %}">
+    <!-- Theme color -->
+    <link id="switcher" href="{% static 'cr/css/theme-color/default-theme.css' %}" rel="stylesheet">
+    <!-- Top Slider CSS -->
+    <link href="{% static 'cr/css/sequence-theme.modern-slide-in.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main style sheet -->
+    <link href="{% static 'cr/css/style.css' %}" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+   <style>
+
+  </style>
+  </head>
+  <body>
+
+
+
+ <!-- ----------------------- -->
+ <h1 Align="center">CART</h1>
+ 
+ <section id="cart-view">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="cart-view-area">
+           <div class="cart-view-table">
+             <form action="">
+               <div class="table-responsive">
+                  <table class="table" style="width:100%">
+                    <thead>
+                      <i class="fa fa-shopping-cart" style="font-size:24px">{{itc}}</i>
+                      <tr style="color:red;">
+                        
+                        
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>product id</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        
+                      
+                      </tr>
+                       </thead>
+                      <tbody>
+                      {% for i in ci %}
+                      <tr>
+                        
+                        
+                        <td><a class="remove" href="{% url  'remove' i.prodt.id %}"><span class="glyphicon">&#xe020;</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{i.prodt.get_url}}"><img src="{{i.prodt.img.url}}" alt="{{i.prodt.name}}"> Quantity:{{i.quan}}</td></a>
+                        <td><a  href="{{i.prodt.get_url}}">{{i.prodt.name}}</a></td>
+                        <td><a class="aa-cart-title" href="#">ID {{i.prodt.id}}</a></td>
+                        <td>{{i.prodt.price}}</td>
+                        <td><a href="{% url  'addcart' i.prodt.id %}"> <i class="fa fa-plus" style="font-size:10px"></i></a>&nbsp;&nbsp;{{i.quan}}&nbsp;&nbsp;<a href="{% url  'cart_decrement' i.prodt.id %}"><i class="fa fa-minus" style="font-size:10px"></i></a></td>
+                        <td>{{i.total}}</td>
+                      
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+             </form>
+             <!-- ------------------ -->
+             <div class="cart-view-total">
+               <h4>Cart Totals</h4>
+               <table class="aa-totals-table">
+                 <tbody>
+                   <tr>
+                     <th>Total</th>
+                     <td>{{t}}</td>
+                   </tr>
+                 </tbody>
+               </table>
+              </div>
+             </div>
+           </div>
+         </div>
+         </div>
+       </div>
+     </div>
+    </div>
+    
+ </section>
+ <!-- / Cart view section -->
+ 
+  </body>
+</html>
+{% endblock %}
